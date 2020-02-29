@@ -45,17 +45,19 @@ def make_rotate(axis, theta):
 
 def make_rotX(matrix, theta ):
     ident(matrix)
-    rad = 20 * math.pi / 180
+    rad = (theta * math.pi) / 180
     matrix[1][1] = math.cos(rad)
     matrix[1][2] = math.sin(rad)
     matrix[2][1] = -math.sin(rad)
     matrix[2][2] = math.cos(rad)
+    # print("x")
+    # print_matrix(matrix)
     return matrix
 
 
 def make_rotY(matrix, theta ):
     ident(matrix)
-    rad = 20 * math.pi / 180
+    rad = (theta * math.pi) / 180
     matrix[0][0] = math.cos(rad)
     matrix[0][2] = -math.sin(rad)
     matrix[2][0] = math.sin(rad)
@@ -65,10 +67,10 @@ def make_rotY(matrix, theta ):
 
 def make_rotZ(matrix, theta ):
     ident(matrix)
-    rad = 20 * math.pi / 180
+    rad = (theta * math.pi) / 180
     matrix[0][0] = math.cos(rad)
     matrix[0][1] = math.sin(rad)
-    matrix[0][1] = -math.sin(rad)
+    matrix[1][0] = -math.sin(rad)
     matrix[1][1] = math.cos(rad)
     return matrix
 
@@ -96,18 +98,16 @@ def ident( matrix ):
 #multiply m1 by m2, modifying m2 to be the product
 #m1 * m2 -> m2
 def matrix_mult( m1, m2 ):
-    print(m1)
-
     point = 0
     for row in m2:
         #get a copy of the next point
         tmp = row[:]
 
         for r in range(4):
-            m2[point][r] = (m1[0][r] * tmp[0] +
-                            m1[1][r] * tmp[1] +
-                            m1[2][r] * tmp[2] +
-                            m1[3][r] * tmp[3])
+            m2[point][r] = int((m1[0][r] * tmp[0]) +
+                            (m1[1][r] * tmp[1]) +
+                            (m1[2][r] * tmp[2]) +
+                            (m1[3][r] * tmp[3]))
         point+= 1
 
 

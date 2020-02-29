@@ -32,6 +32,8 @@ The file follows the following format:
 
 See the file script for an example of the file format
 """
+
+
 def parse_file( fname, points, transform, screen, color ):
     with open(fname, "r") as scripts:
         lines = scripts.readlines()
@@ -60,6 +62,7 @@ def parse_file( fname, points, transform, screen, color ):
             args = lines[l + 1].split(" ")
             l += 1
             transform = make_rotate(args[0], int(args[1]))
+            print_matrix(transform)
         elif (lines[l] == "apply"):
             matrix_mult(transform, points)
         elif (lines[l] == "display"):

@@ -22,20 +22,17 @@ line
 100 100 0 100 100 100
 line
 100 0 0 100 0 100
-save
-pic0.ppm
+display
 ident
 scale
 2 2 2
 apply
-save
-pic1.ppm
+display
 ident
 move
 100 100 0
 apply
-save
-pic2.ppm
+display
 ident
 rotate
 z 20
@@ -44,11 +41,11 @@ x 20
 rotate
 y 20
 apply
-save
-pic3.ppm
+display
 ident
 rotate
 y 20
 apply
+display
 save
-pic4.ppm
+pic.png

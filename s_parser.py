@@ -50,19 +50,24 @@ def parse_file( fname, points, transform, screen, color ):
             ident(transform)
         elif (lines[l] == "scale"):
             args = lines[l + 1].split(" ")
-            args = [int(x) for x in args]
+            args = [float(x) for x in args]
             l += 1
-            transform = make_scale(args[0], args[1], args[2])
+            new = make_scale(args[0], args[1], args[2])
+            matrix_mult1(new, transform)
         elif (lines[l] == "move"):
             args = lines[l + 1].split(" ")
             args = [int(x) for x in args]
             l += 1
-            transform = make_translate(args[0], args[1], args[2])
+            new = make_translate(args[0], args[1], args[2])
+            matrix_mult(new, transform)
+
         elif (lines[l] == "rotate"):
             args = lines[l + 1].split(" ")
             l += 1
-            transform = make_rotate(args[0], int(args[1]))
+            new = make_rotate(args[0], int(args[1]))
+            matrix_mult1(new, transform)
             print_matrix(transform)
+
         elif (lines[l] == "apply"):
             matrix_mult(transform, points)
         elif (lines[l] == "display"):
@@ -72,7 +77,7 @@ def parse_file( fname, points, transform, screen, color ):
         elif (lines[l] == "save"):
             clear_screen(screen)
             draw_lines(points, screen, color)
-            save_extension(screen, lines[l + 1])
+            save_ppm(screen, lines[l + 1])
             l += 1
         else:
             break
